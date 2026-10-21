@@ -390,6 +390,48 @@ main .page > section.sec.quote { background: #1d2a33 !important; color: #fff; }
   main .page > section.sec:nth-of-type(odd)::after { display: none; }
   main .page > section.sec:nth-of-type(even)::after { opacity: .7; }
 }
+
+/* Mobile and small screens: readable text, comfortable tap targets, light page titles */
+html { -webkit-text-size-adjust: 100%; }
+img, svg, video { max-width: 100%; }
+.filters button { min-height: 44px; padding-inline: 4px; }
+.g-btns button { width: 44px; height: 44px; }
+.logo-text small, .img .ph .ph-n, .todo, .copy-btn, .feat .small-caps, .hero .eyebrow { font-size: 12px; }
+.copy-btn { padding: 6px 10px; }
+@media (max-width: 960px) {
+  .nav a.top { padding: 14px 4px; }
+  .drop a { padding: 12px 18px; }
+}
+@media (max-width: 700px) {
+  body { font-size: 16px; line-height: 1.7; }
+  .head-top { display: none; }
+  .head-row { padding-block: 12px; gap: 12px; }
+  .logo { gap: 10px; }
+  .logo-mark { height: 40px; }
+  .menu-btn { min-height: 44px; padding: 10px 12px; flex: none; }
+  .page-title { background: none !important; padding-block: 44px 32px; }
+  .page-title h1 { color: #18242c !important; }
+  h1 { font-size: clamp(32px, 9vw, 44px); overflow-wrap: break-word; hyphens: auto; }
+  h2 { font-size: clamp(26px, 7vw, 34px); }
+  .sec { padding-block: 52px; }
+  .tile { min-height: 0; padding: 22px 20px; }
+  .tile::after { right: 20px; bottom: 20px; }
+  .filters { gap: 0 18px; margin-bottom: 28px; }
+  .small-caps, .img .ph .ph-n, .todo, .logo-text small { font-size: 12px; }
+  .foot-small { font-size: 13px; line-height: 1.7; }
+  .site-foot .fc-dot { display: none; }
+  .site-foot .fc { display: block; margin-top: 6px; }
+  .btn { min-height: 44px; }
+  .pa-btn { width: 46px; height: 46px; }
+  input, select, textarea { font-size: 16px; }
+}
+@media (max-width: 380px) {
+  .logo .word { font-size: 15px !important; letter-spacing: 0.08em !important; }
+  .logo-text small { letter-spacing: 0.1em; }
+  .logo-mark { height: 34px; }
+  .menu-btn { padding: 10px; letter-spacing: .12em; }
+  .wrap, .narrow { padding-inline: 16px; }
+}
 </style>
 
 <!-- Line icons for the three PNG ideas -->
@@ -744,14 +786,14 @@ main .page > section.sec.quote { background: #1d2a33 !important; color: #fff; }
   <section class="sec" style="padding-top:0">
     <div class="wrap news-grid">
       <div class="rows">
-        <article class="row"><span>2026</span><div><p class="small-caps" style="font-size:11px">Awards</p><h3>Overall DuluxGroup Design Excellence Award winner 2026</h3><figure class="news-fig"><img src="images/dulux-award-2026.jpg" alt="Rita Karaie of Peddle Thorp Asia Pacific holding the award, with Andrew Nyberg and Simon Barstow of DuluxGroup PNG"><figcaption>From left: Andrew Nyberg, National Sales and Marketing Manager, DuluxGroup PNG; Rita Karaie, Director, Peddle Thorp Asia Pacific; Simon Barstow, General Manager, DuluxGroup PNG.</figcaption></figure><p>Celebrating architecture, design and colour in PNG! More than 400 guests came together at the Hilton Port Moresby for the return of the PNGIA Dulux Design Excellence Awards, celebrating 11 awards across design, heritage and colour.</p><p>After a long break since before COVID, it was fantastic to once again celebrate the creativity, innovation and cultural identity shaping Papua New Guinea’s built environment.</p><p>A special congratulations to Peddle Thorp Asia Pacific, named the Overall DuluxGroup Design Excellence Award winner, along with all our 2026 finalists and award winners. The future is bright. Together, let’s colour the future of Papua New Guinea.</p><p class="srcs"><a class="src" href="https://www.facebook.com/photo/?fbid=122216054432340878&amp;set=a.122111643440340878" target="_blank" rel="noopener">Facebook</a></p></div></article>
-        <article class="row"><span>Sep 2025</span><div><p class="small-caps" style="font-size:11px">Project news</p><h3>Waigani National Courts Complex officially opened</h3><p>Governor-General Grand Chief Sir Bob Dadae opened the new courts complex on 10 September 2025, during PNG’s 50th Independence celebrations. Prime Minister James Marape called it “an investment in the very core of our democracy”. The complex has 15 courtrooms, including the Banco Court, and 31 judges’ chambers.</p><p class="srcs"><a class="src" href="https://info.gov.pg/governor-general-opens-new-waigani-court-complex-reaffirms-commitment-to-justice/" target="_blank" rel="noopener">PNG Government</a> <a class="src" href="https://www.pmnec.gov.pg/pm-marape-new-court-complex-a-national-monument-for-justice-and-democracy/" target="_blank" rel="noopener">Office of the Prime Minister</a> <a class="src" href="https://pnghausbung.com/new-court-complex-opens-in-port-moresby/" target="_blank" rel="noopener">PNG Haus Bung</a> <a class="src" href="https://ptw.com.au/journal/the-grand-opening-of-the-waigani-national-courts-complex-in-port-moresby" target="_blank" rel="noopener">PTW Architects</a></p></div></article>
-        <article class="row"><span>Sep 2025</span><div><p class="small-caps" style="font-size:11px">Project news</p><h3>A national monument for justice</h3><p>Officially opening the complex on 13 September 2025, Prime Minister James Marape called it a national monument for justice and democracy, and one of the most modern judicial facilities in the southern hemisphere.</p><p class="srcs"><a class="src" href="https://www.pmnec.gov.pg/pm-marape-new-court-complex-a-national-monument-for-justice-and-democracy/" target="_blank" rel="noopener">Office of the Prime Minister</a></p></div></article>
-        <article class="row"><span>Sep 2024</span><div><p class="small-caps" style="font-size:11px">Project news</p><h3>Prime Minister sets 2025 opening for the new courts</h3><p>Prime Minister James Marape announced that the Waigani National Court Complex would open in 2025 as PNG celebrated 50 years of Independence.</p><p class="srcs"><a class="src" href="https://www.pmnec.gov.pg/prime-minister-announces-opening-of-k450-million-waigani-national-court-complex-in-2025-as-papua-new-guinea-celebrates-50-years-of-independence/" target="_blank" rel="noopener">Office of the Prime Minister</a></p></div></article>
-        <article class="row"><span>Oct 2023</span><div><p class="small-caps" style="font-size:11px">Project news</p><h3>Federal Court of Australia Chief Justice tours Waigani</h3><p>Chief Justice Debra Mortimer toured the court complex under construction with PNG Chief Justice Sir Gibbs Salika.</p><p class="srcs"><a class="src" href="https://pngcje.gov.pg/chief-justice-of-the-federal-court-of-australia-visits-the-new-waigani-national-and-supreme-court-complex/" target="_blank" rel="noopener">PNG Centre for Judicial Excellence</a></p></div></article>
-        <article class="row"><span>May 2018</span><div><p class="small-caps" style="font-size:11px">Project news</p><h3>Waigani courts construction on track</h3><p>Thirteen months into construction, Chief Justice Sir Salamo Injia described the new Supreme and National Court complex as the landmark court building in the country.</p><p class="srcs"><a class="src" href="https://www.thenational.com.pg/building-work-court-complex-waigani-stays-target/" target="_blank" rel="noopener">The National</a></p></div></article>
-        <article class="row"><span>Mar 2018</span><div><p class="small-caps" style="font-size:11px">Our people</p><h3>Up &amp; Coming: our young architects</h3><p>Our "Up &amp; Coming" series profiled graduates John Michael Alarcos, Rita Karaiye and George Bundu-Tuna. Rita, sponsored by the firm through PNG University of Technology, worked on site quality management for the National Supreme Courts project.</p><p class="srcs"><a class="src" href="https://medium.com/@ptapngltd_35277/peddle-thorp-architects-png-up-coming-rita-karaiye-d71013dd020f" target="_blank" rel="noopener">Rita Karaiye</a> <a class="src" href="https://medium.com/@ptapngltd_35277" target="_blank" rel="noopener">All profiles</a></p></div></article>
-        <article class="row"><span>Jan 2014</span><div><p class="small-caps" style="font-size:11px">Project news</p><h3>Peddle Thorp consortium appointed to design PNG’s new courts</h3><p>Peddle Thorp, James Cubitt Architects and Beacon Consulting were named principal design consultants for the Supreme, Appeal and National Courts complex at Waigani.</p><p class="srcs"><a class="src" href="https://www.thenational.com.pg/peddle-thorp-wins-design-job/" target="_blank" rel="noopener">The National</a></p></div></article>
+        <article class="row"><span>2026</span><div><p class="small-caps" style="font-size:12px">Awards</p><h3>Overall DuluxGroup Design Excellence Award winner 2026</h3><figure class="news-fig"><img src="images/dulux-award-2026.jpg" alt="Rita Karaie of Peddle Thorp Asia Pacific holding the award, with Andrew Nyberg and Simon Barstow of DuluxGroup PNG"><figcaption>From left: Andrew Nyberg, National Sales and Marketing Manager, DuluxGroup PNG; Rita Karaie, Director, Peddle Thorp Asia Pacific; Simon Barstow, General Manager, DuluxGroup PNG.</figcaption></figure><p>Celebrating architecture, design and colour in PNG! More than 400 guests came together at the Hilton Port Moresby for the return of the PNGIA Dulux Design Excellence Awards, celebrating 11 awards across design, heritage and colour.</p><p>After a long break since before COVID, it was fantastic to once again celebrate the creativity, innovation and cultural identity shaping Papua New Guinea’s built environment.</p><p>A special congratulations to Peddle Thorp Asia Pacific, named the Overall DuluxGroup Design Excellence Award winner, along with all our 2026 finalists and award winners. The future is bright. Together, let’s colour the future of Papua New Guinea.</p><p class="srcs"><a class="src" href="https://www.facebook.com/photo/?fbid=122216054432340878&amp;set=a.122111643440340878" target="_blank" rel="noopener">Facebook</a></p></div></article>
+        <article class="row"><span>Sep 2025</span><div><p class="small-caps" style="font-size:12px">Project news</p><h3>Waigani National Courts Complex officially opened</h3><p>Governor-General Grand Chief Sir Bob Dadae opened the new courts complex on 10 September 2025, during PNG’s 50th Independence celebrations. Prime Minister James Marape called it “an investment in the very core of our democracy”. The complex has 15 courtrooms, including the Banco Court, and 31 judges’ chambers.</p><p class="srcs"><a class="src" href="https://info.gov.pg/governor-general-opens-new-waigani-court-complex-reaffirms-commitment-to-justice/" target="_blank" rel="noopener">PNG Government</a> <a class="src" href="https://www.pmnec.gov.pg/pm-marape-new-court-complex-a-national-monument-for-justice-and-democracy/" target="_blank" rel="noopener">Office of the Prime Minister</a> <a class="src" href="https://pnghausbung.com/new-court-complex-opens-in-port-moresby/" target="_blank" rel="noopener">PNG Haus Bung</a> <a class="src" href="https://ptw.com.au/journal/the-grand-opening-of-the-waigani-national-courts-complex-in-port-moresby" target="_blank" rel="noopener">PTW Architects</a></p></div></article>
+        <article class="row"><span>Sep 2025</span><div><p class="small-caps" style="font-size:12px">Project news</p><h3>A national monument for justice</h3><p>Officially opening the complex on 13 September 2025, Prime Minister James Marape called it a national monument for justice and democracy, and one of the most modern judicial facilities in the southern hemisphere.</p><p class="srcs"><a class="src" href="https://www.pmnec.gov.pg/pm-marape-new-court-complex-a-national-monument-for-justice-and-democracy/" target="_blank" rel="noopener">Office of the Prime Minister</a></p></div></article>
+        <article class="row"><span>Sep 2024</span><div><p class="small-caps" style="font-size:12px">Project news</p><h3>Prime Minister sets 2025 opening for the new courts</h3><p>Prime Minister James Marape announced that the Waigani National Court Complex would open in 2025 as PNG celebrated 50 years of Independence.</p><p class="srcs"><a class="src" href="https://www.pmnec.gov.pg/prime-minister-announces-opening-of-k450-million-waigani-national-court-complex-in-2025-as-papua-new-guinea-celebrates-50-years-of-independence/" target="_blank" rel="noopener">Office of the Prime Minister</a></p></div></article>
+        <article class="row"><span>Oct 2023</span><div><p class="small-caps" style="font-size:12px">Project news</p><h3>Federal Court of Australia Chief Justice tours Waigani</h3><p>Chief Justice Debra Mortimer toured the court complex under construction with PNG Chief Justice Sir Gibbs Salika.</p><p class="srcs"><a class="src" href="https://pngcje.gov.pg/chief-justice-of-the-federal-court-of-australia-visits-the-new-waigani-national-and-supreme-court-complex/" target="_blank" rel="noopener">PNG Centre for Judicial Excellence</a></p></div></article>
+        <article class="row"><span>May 2018</span><div><p class="small-caps" style="font-size:12px">Project news</p><h3>Waigani courts construction on track</h3><p>Thirteen months into construction, Chief Justice Sir Salamo Injia described the new Supreme and National Court complex as the landmark court building in the country.</p><p class="srcs"><a class="src" href="https://www.thenational.com.pg/building-work-court-complex-waigani-stays-target/" target="_blank" rel="noopener">The National</a></p></div></article>
+        <article class="row"><span>Mar 2018</span><div><p class="small-caps" style="font-size:12px">Our people</p><h3>Up &amp; Coming: our young architects</h3><p>Our "Up &amp; Coming" series profiled graduates John Michael Alarcos, Rita Karaiye and George Bundu-Tuna. Rita, sponsored by the firm through PNG University of Technology, worked on site quality management for the National Supreme Courts project.</p><p class="srcs"><a class="src" href="https://medium.com/@ptapngltd_35277/peddle-thorp-architects-png-up-coming-rita-karaiye-d71013dd020f" target="_blank" rel="noopener">Rita Karaiye</a> <a class="src" href="https://medium.com/@ptapngltd_35277" target="_blank" rel="noopener">All profiles</a></p></div></article>
+        <article class="row"><span>Jan 2014</span><div><p class="small-caps" style="font-size:12px">Project news</p><h3>Peddle Thorp consortium appointed to design PNG’s new courts</h3><p>Peddle Thorp, James Cubitt Architects and Beacon Consulting were named principal design consultants for the Supreme, Appeal and National Courts complex at Waigani.</p><p class="srcs"><a class="src" href="https://www.thenational.com.pg/peddle-thorp-wins-design-job/" target="_blank" rel="noopener">The National</a></p></div></article>
       </div>
       <aside aria-label="Follow us">
         <!--FB-EMBED-->
@@ -809,7 +851,7 @@ main .page > section.sec.quote { background: #1d2a33 !important; color: #fff; }
     <a class="foot-logo logo" href="#home" aria-label="Peddle Thorp Architects PNG, home">
       <img class="logo-mark" src="images/logo-mark-white.png" alt="" style="height:64px">
       <span class="word">Peddle<b>Thorp</b></span>
-      <span class="small-caps">Architects PNG &nbsp;·&nbsp; Port Moresby &nbsp;|&nbsp; Brisbane &nbsp;|&nbsp; Cairns &nbsp;|&nbsp; Townsville</span>
+      <span class="small-caps">Architects PNG<span class="fc-dot"> &nbsp;·&nbsp; </span><span class="fc">Port Moresby &nbsp;|&nbsp; Brisbane &nbsp;|&nbsp; Cairns &nbsp;|&nbsp; Townsville</span></span>
     </a>
     <div class="socials">
       <a href="https://pg.linkedin.com/company/peddle-thorp-asia-pacific-ltd" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="2" fill="#111"/><path d="M7 10h2.5v7.5H7V10zm1.25-3.75a1.4 1.4 0 110 2.8 1.4 1.4 0 010-2.8zM11 10h2.4v1.1c.4-.7 1.3-1.3 2.6-1.3 2.6 0 3 1.6 3 3.7v4H16.5v-3.6c0-.9 0-2-1.2-2s-1.4.9-1.4 1.9v3.7H11V10z" fill="#fff"/></svg></a>
