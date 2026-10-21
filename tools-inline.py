@@ -15,5 +15,5 @@ for path, uri in imgs.items():
 # Paths the script builds at run time
 tag = '<script>window.INLINE_IMAGES = %s;</script>\n' % json.dumps(imgs)
 i = src.index('<script>')
-open('preview.html', 'w').write(src[:i] + tag + src[i:])
+open('preview.html', 'w').write('<meta charset="utf-8">\n' + src[:i] + tag + src[i:])
 print('inlined', len(imgs), 'images')
