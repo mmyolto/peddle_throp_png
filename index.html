@@ -492,6 +492,37 @@ img, svg, video { max-width: 100%; }
 .tl-line span { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1.4; text-align: center; }
 .tl-line button[aria-current="true"] span { color: var(--ochre); }
 @media (max-width: 860px) { .tl-main { grid-template-columns: 1fr; } .tl-frame { margin: 10px; } }
+
+/* Video controls and playing state */
+.vh-ctrl { position: absolute; right: var(--gutter); bottom: clamp(56px, 10vh, 120px); z-index: 3; display: none; gap: 10px; }
+.vhero.has-video .vh-ctrl { display: flex; }
+.vh-ctrl button { height: 46px; min-width: 46px; border-radius: 23px; border: 1px solid rgba(255,255,255,.7); background: rgba(10,22,30,.45); color: #fff; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 0 14px; cursor: pointer; font: 500 12px var(--font); letter-spacing: .18em; text-transform: uppercase; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: background .3s, border-color .3s; }
+.vh-ctrl button:hover, .vh-ctrl button:focus-visible { background: var(--sky); border-color: var(--sky); }
+.vh-ctrl svg { width: 20px; height: 20px; fill: #fff; stroke: #fff; stroke-width: 0; }
+.vh-ctrl .x, .vh-ctrl .w { fill: none; stroke-width: 1.8; stroke-linecap: round; }
+.vh-ctrl .w, .vhero.sound .vh-ctrl .x { display: none; }
+.vhero.sound .vh-ctrl .w { display: inline; }
+.vh-ctrl .pl, .vhero.paused .vh-ctrl .pz, .vhero.still:not(.playing) .vh-ctrl .pz { display: none; }
+.vhero.paused .vh-ctrl .pl, .vhero.still:not(.playing) .vh-ctrl .pl { display: inline; }
+#vh-sound { animation: vh-pulse 2.6s ease-in-out 3; }
+@keyframes vh-pulse { 50% { box-shadow: 0 0 0 8px rgba(16,171,225,.35); } }
+/* The film carries its own titles, so the heading steps back while it plays and the shade lightens. */
+.vh-text .eyebrow, .vh-text h1 { transition: opacity 1.2s ease, transform 1.2s ease; }
+.vhero.playing:not(.paused) .vh-text .eyebrow, .vhero.playing:not(.paused) .vh-text h1 { opacity: 0; transform: translateY(12px); }
+.vh-shade { transition: opacity 1.2s ease; }
+.vhero.playing:not(.paused) .vh-shade { opacity: .55; }
+.vh-slides { transition: filter 1.2s ease; }
+@media (max-width: 700px) {
+  .vh-ctrl { top: 14px; bottom: auto; right: 14px; }
+  .vh-ctrl button { height: 44px; min-width: 44px; padding: 0 12px; }
+}
+/* Portrait phones and tablets: show the whole 16:9 film instead of a narrow crop, over a softened photo. */
+@media (orientation: portrait) and (max-width: 1024px) {
+  .vhero.playing .vh-video { object-fit: contain; }
+  .vhero.playing .vh-slides { filter: blur(16px) brightness(.5); }
+  .vhero.playing:not(.paused) .vh-shade { opacity: .9; }
+}
+@media (prefers-reduced-motion: reduce) { #vh-sound { animation: none; } }
 </style>
 
 <!-- Line icons for the three PNG ideas -->
@@ -529,7 +560,7 @@ img, svg, video { max-width: 100%; }
 
 <!-- HOME -->
 <div class="page" data-page="home">
-  <!-- Full-screen video hero. Put the client's film at video/home.mp4; until then the photos below crossfade behind the text. -->
+  <!-- Full-screen video hero: the client's promo film (video/home.mp4, web copy). The photos show until it plays, and stay as the fallback. -->
   <div class="vhero" id="vhero" role="region" aria-label="Peddle Thorp Asia Pacific">
     <div class="vh-slides" aria-hidden="true">
       <img class="on" src="images/waigani-building.jpg" alt="">
@@ -537,12 +568,16 @@ img, svg, video { max-width: 100%; }
       <img src="images/waigani-screen.jpg" alt="">
       <img src="images/waigani-courtroom.jpg" alt="">
     </div>
-    <video class="vh-video" id="vh-video" autoplay muted loop playsinline preload="auto" poster="images/waigani-building.jpg" aria-hidden="true"><source src="video/home.mp4" type="video/mp4"></video>
+    <video class="vh-video" id="vh-video" autoplay muted loop playsinline preload="auto" poster="images/waigani-building.jpg" aria-hidden="true"><source src="video/home.mp4" type="video/mp4"><source src="video/home.webm" type="video/webm"></video>
     <div class="vh-shade" aria-hidden="true"></div>
     <div class="vh-text wrap">
       <p class="eyebrow">Peddle Thorp Asia Pacific · Port Moresby</p>
       <h1>Making places better for Papua New Guinea</h1>
       <div class="hero-cta"><a class="btn solid" href="#portfolio">Our projects</a><a class="btn" href="#contact">Start a project</a></div>
+    </div>
+    <div class="vh-ctrl" id="vh-ctrl">
+      <button type="button" id="vh-sound" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="x" d="M16 9l5 6M21 9l-5 6"/><path class="w" d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12"/></svg><span>Sound on</span></button>
+      <button type="button" id="vh-play" aria-label="Pause video"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="pz" d="M7 5h3v14H7zM14 5h3v14h-3z"/><path class="pl" d="M8 5l11 7-11 7z"/></svg></button>
     </div>
     <button class="vh-scroll" type="button" data-jump="home-next" aria-label="Scroll to featured work"><span></span></button>
   </div>
@@ -1158,7 +1193,20 @@ img, svg, video { max-width: 100%; }
     var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
     function fit() { document.documentElement.style.setProperty('--head-h', document.querySelector('.site-head').offsetHeight + 'px'); }
     fit(); window.addEventListener('resize', fit);
-    v.addEventListener('playing', function () { hero.classList.add('playing'); });
+    var snd = document.getElementById('vh-sound'), ply = document.getElementById('vh-play');
+    v.addEventListener('playing', function () { hero.classList.add('playing'); hero.classList.remove('paused'); ply.setAttribute('aria-label', 'Pause video'); });
+    v.addEventListener('pause', function () { hero.classList.add('paused'); ply.setAttribute('aria-label', 'Play video'); });
+    function ready() { hero.classList.add('has-video'); }
+    v.addEventListener('loadedmetadata', ready); v.addEventListener('playing', ready); if (v.readyState >= 1) ready();
+    // Plays on a continuous loop; this restarts it too on browsers that ignore the loop attribute.
+    v.loop = true;
+    v.addEventListener('ended', function () { v.currentTime = 0; v.play(); });
+    v.addEventListener('volumechange', function () { var on = !v.muted; snd.setAttribute('aria-pressed', on); snd.querySelector('span').textContent = on ? 'Sound off' : 'Sound on'; hero.classList.toggle('sound', on); });
+    // The film has a voiceover: it starts muted (browsers only autoplay silent video) and the button turns the sound on.
+    snd.onclick = function () { v.muted = !v.muted; if (!v.muted) { v.volume = 1; v.play(); } };
+    ply.onclick = function () { if (v.paused) v.play(); else v.pause(); };
+    // Leave the home page and the film pauses; come back and it carries on.
+    window.addEventListener('hashchange', function () { if (!hero.offsetParent) v.pause(); else if (!still && hero.classList.contains('playing')) v.play(); });
     if (still) { v.removeAttribute('autoplay'); v.pause(); hero.classList.add('still'); return; }
     setInterval(function () {
       if (hero.classList.contains('playing') || document.hidden) return;

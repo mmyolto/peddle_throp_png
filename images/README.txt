@@ -3,7 +3,7 @@ JPG is best, about 2000 px wide.
 
 ptap-logo.png, ptap-logo-white.png  Peddle Thorp Asia Pacific logo (from source/PTAP_LOGO.png); logo-mark*.png is its symbol
 waigani-building.jpg, waigani-banco-court.jpg, waigani-courtroom.jpg, waigani-screen.jpg  Waigani National Courts Complex
-../video/home.mp4           Home page film (muted, loops; MP4 H.264, about 1920 px wide, under 15 MB)
+../video/home.mp4           Home page film: web copy of PTAP Promo V6 (720p H.264, about 14 MB). Starts muted, Sound on button
 award-colour-2026.jpg, award-4.jpg, award-5.jpg  Awards timeline photos
 current-1.jpg .. current-3.jpg  Current projects photos
 waigani-plan.jpg            Waigani site plan (otherwise loaded from peddlethorp.com.au)
