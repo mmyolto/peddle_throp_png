@@ -11,7 +11,7 @@ if os.path.isdir('images'):
             imgs[path] = 'data:%s;base64,%s' % (mt, base64.b64encode(open(path, 'rb').read()).decode())
 # Literal references in HTML and CSS
 for path, uri in imgs.items():
-    src = src.replace('src="%s"' % path, 'src="%s"' % uri).replace('url("%s")' % path, 'url("%s")' % uri)
+    src = src.replace('src="%s"' % path, 'src="%s"' % uri).replace('poster="%s"' % path, 'poster="%s"' % uri).replace('url("%s")' % path, 'url("%s")' % uri)
 # Paths the script builds at run time
 tag = '<script>window.INLINE_IMAGES = %s;</script>\n' % json.dumps(imgs)
 i = src.index('<script>')

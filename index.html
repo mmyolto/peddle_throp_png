@@ -13,7 +13,7 @@
    studio line right, uppercase menu with dropdowns, full-width image galleries with a 1/4
    counter, uppercase project titles under thumbnails. PNG identity lives in a thin bilum
    band, the PNG projects and a serif classical finish. Colours come from the PNG office's
-   blue scroll-and-circle logo (images/logo-mark.png).
+   blue scroll-and-circle logo (images/ptap-logo.png; the mark alone is images/logo-mark.png).
    Single light look on purpose, to match the partner site. */
 :root {
   --bg: #fbfcfc;
@@ -438,6 +438,60 @@ img, svg, video { max-width: 100%; }
   .menu-btn { padding: 10px; letter-spacing: .12em; }
   .wrap, .narrow { padding-inline: 16px; }
 }
+
+/* New logo (Peddle Thorp Asia Pacific) */
+.logo-full { height: 64px; width: auto; display: block; }
+.foot-logo-img { height: 70px; width: auto; max-width: 100%; display: block; margin-inline: auto; }
+@media (max-width: 960px) { .logo-full { height: 44px; } }
+@media (max-width: 380px) { .logo-full { height: 36px; } }
+
+/* Full-screen video hero */
+.vhero { position: relative; height: calc(100svh - var(--head-h, 84px)); min-height: 460px; overflow: hidden; background: #0c1a24; color: #fff; }
+.vh-slides img, .vh-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.vh-slides img { opacity: 0; transform: scale(1.02); transition: opacity 2.4s cubic-bezier(.45, 0, .2, 1), transform 12s linear; }
+.vh-slides img.on { opacity: 1; transform: scale(1.12); }
+.vhero.still .vh-slides img { transition: none; transform: none; }
+.vh-video { opacity: 0; transition: opacity 1.6s ease; }
+.vhero.playing .vh-video { opacity: 1; }
+.vh-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,22,30,.25) 0%, rgba(10,22,30,0) 30%, rgba(10,22,30,.15) 55%, rgba(10,22,30,.78) 100%), linear-gradient(90deg, rgba(10,22,30,.45), rgba(10,22,30,0) 65%); }
+.vh-text { position: absolute; left: 0; right: 0; bottom: clamp(56px, 10vh, 120px); z-index: 2; }
+.vh-text .eyebrow { font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(255,255,255,.88); margin-bottom: 16px; }
+.vh-text h1 { color: #fff !important; font-size: clamp(36px, 6vw, 84px); line-height: 1.04; max-width: 15ch; text-shadow: 0 2px 30px rgba(0,0,0,.35); }
+.vh-text h1::after { display: none !important; }
+.vh-text .hero-cta { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+.vh-text .btn { background: transparent; color: #fff; border-color: rgba(255,255,255,.75); }
+.vh-text .btn.solid { background: var(--sky); border-color: var(--sky); }
+.vh-scroll { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 2; width: 44px; height: 44px; border: 0; background: none; cursor: pointer; }
+.vh-scroll span { display: block; width: 14px; height: 14px; margin: 0 auto; border-right: 1.5px solid #fff; border-bottom: 1.5px solid #fff; transform: rotate(45deg); animation: vh-bob 2.4s ease-in-out infinite; }
+@keyframes vh-bob { 50% { transform: translateY(6px) rotate(45deg); } }
+@media (prefers-reduced-motion: reduce) { .vh-scroll span { animation: none; } }
+@media (max-width: 700px) {
+  .vhero { min-height: 520px; }
+  .vh-text { bottom: 70px; }
+  .vh-text h1 { font-size: clamp(34px, 10vw, 48px); }
+  .vh-text .eyebrow { letter-spacing: 0.18em; font-size: 11.5px; }
+  .vh-text .btn { flex: 1 1 auto; text-align: center; }
+}
+
+/* Timelines: current projects and awards */
+.tl { max-width: 1100px; margin-inline: auto; }
+.tl:focus { outline: none; }
+.tl-main { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+.tl-frame { position: relative; aspect-ratio: 4 / 3; background: var(--navy); outline: 1px solid #d9c9b0; outline-offset: 10px; }
+.tl-frame::before { content: ""; position: absolute; left: -10px; top: -10px; width: 56px; height: 56px; border-left: 3px solid var(--ochre); border-top: 3px solid var(--ochre); z-index: 2; }
+.tl-frame .pa-slide .ph .ph-n { display: block; color: rgba(255,255,255,.9); position: relative; z-index: 1; }
+.tl-line { list-style: none; display: flex; gap: 0; margin: 52px 0 0; padding: 0 0 6px; overflow-x: auto; position: relative; scrollbar-width: none; }
+.tl-line::-webkit-scrollbar { display: none; }
+.tl-line li { flex: 1 0 120px; position: relative; }
+.tl-line li::before { content: ""; position: absolute; left: 0; right: 0; top: 9px; height: 1px; background: #d9c9b0; }
+.tl-line li:first-child::before { left: 50%; } .tl-line li:last-child::before { right: 50%; }
+.tl-line button { position: relative; width: 100%; background: none; border: 0; display: grid; justify-items: center; gap: 6px; padding: 0 6px; cursor: pointer; font: inherit; color: var(--ink-2); min-height: 44px; }
+.tl-line button::before { content: ""; width: 14px; height: 14px; border-radius: 50%; background: #f6f1e9; border: 2px solid var(--ochre); box-sizing: border-box; margin-top: 2px; transition: background .3s, transform .3s; }
+.tl-line button[aria-current="true"]::before { background: var(--ochre); transform: scale(1.25); }
+.tl-line b { font: 500 19px/1.1 var(--serif); color: var(--ink); }
+.tl-line span { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1.4; text-align: center; }
+.tl-line button[aria-current="true"] span { color: var(--ochre); }
+@media (max-width: 860px) { .tl-main { grid-template-columns: 1fr; } .tl-frame { margin: 10px; } }
 </style>
 
 <!-- Line icons for the three PNG ideas -->
@@ -455,8 +509,7 @@ img, svg, video { max-width: 100%; }
   <div class="wrap head-top"><p class="small-caps">Port Moresby &nbsp;|&nbsp; Papua New Guinea</p></div>
   <div class="wrap head-row">
     <a class="logo" href="#home" aria-label="Peddle Thorp Architects PNG, home">
-      <img class="logo-mark" src="images/logo-mark.png" alt="">
-      <span class="logo-text"><span class="word">Peddle<b>Thorp</b></span><small>Architects PNG Ltd</small></span>
+      <img class="logo-full" src="images/ptap-logo.png" alt="Peddle Thorp Asia Pacific: Architecture, Interior, Health, Education, Planning">
     </a>
     <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="nav" id="nav" aria-label="Main">
@@ -476,12 +529,25 @@ img, svg, video { max-width: 100%; }
 
 <!-- HOME -->
 <div class="page" data-page="home">
-  <div class="wrap hero" style="padding-top:24px">
-    <div class="gallery" data-gallery="waigani"></div>
-    <div class="hero-text" style="left:var(--gutter);right:var(--gutter);top:24px"><div><p class="eyebrow">Peddle Thorp Architects PNG · Port Moresby</p><h1>Making places better for Papua New Guinea</h1><div class="hero-cta"><a class="btn solid" href="#portfolio">Our projects</a><a class="btn" href="#contact">Start a project</a></div></div></div>
+  <!-- Full-screen video hero. Put the client's film at video/home.mp4; until then the photos below crossfade behind the text. -->
+  <div class="vhero" id="vhero" role="region" aria-label="Peddle Thorp Asia Pacific">
+    <div class="vh-slides" aria-hidden="true">
+      <img class="on" src="images/waigani-building.jpg" alt="">
+      <img src="images/waigani-banco-court.jpg" alt="">
+      <img src="images/waigani-screen.jpg" alt="">
+      <img src="images/waigani-courtroom.jpg" alt="">
+    </div>
+    <video class="vh-video" id="vh-video" autoplay muted loop playsinline preload="auto" poster="images/waigani-building.jpg" aria-hidden="true"><source src="video/home.mp4" type="video/mp4"></video>
+    <div class="vh-shade" aria-hidden="true"></div>
+    <div class="vh-text wrap">
+      <p class="eyebrow">Peddle Thorp Asia Pacific · Port Moresby</p>
+      <h1>Making places better for Papua New Guinea</h1>
+      <div class="hero-cta"><a class="btn solid" href="#portfolio">Our projects</a><a class="btn" href="#contact">Start a project</a></div>
+    </div>
+    <button class="vh-scroll" type="button" data-jump="home-next" aria-label="Scroll to featured work"><span></span></button>
   </div>
 
-  <section class="sec">
+  <section class="sec" id="home-next">
     <div class="wrap">
       <div class="sec-title"><h2>Featured</h2></div>
       <div class="featured">
@@ -691,6 +757,12 @@ img, svg, video { max-width: 100%; }
       </div>
     </div>
   </section>
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-title"><h2>Current projects</h2><p class="small-caps" style="margin-top:14px">Work in design and under construction</p></div>
+      <div class="tl" id="tl-current" role="region" aria-roledescription="carousel" aria-label="Current projects"></div>
+    </div>
+  </section>
 </div>
 
 <!-- PROJECT PAGE (filled from the project list) -->
@@ -762,6 +834,11 @@ img, svg, video { max-width: 100%; }
 <div class="page" data-page="awards" hidden>
   <div class="page-title"><h1>Awards</h1><p class="small-caps" style="margin-top:14px">Recognition for our work in Papua New Guinea</p></div>
   <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="tl" id="tl-awards" role="region" aria-roledescription="carousel" aria-label="Awards timeline"></div>
+    </div>
+  </section>
+  <section class="sec">
     <div class="wrap">
       <div class="awards">
         <article class="award">
@@ -857,8 +934,7 @@ img, svg, video { max-width: 100%; }
 <footer class="site-foot">
   <div class="wrap">
     <a class="foot-logo logo" href="#home" aria-label="Peddle Thorp Architects PNG, home">
-      <img class="logo-mark" src="images/logo-mark-white.png" alt="" style="height:64px">
-      <span class="word">Peddle<b>Thorp</b></span>
+      <img class="foot-logo-img" src="images/ptap-logo-white.png" alt="Peddle Thorp Asia Pacific">
       <span class="small-caps">Architects PNG<span class="fc-dot"> &nbsp;·&nbsp; </span><span class="fc">Port Moresby &nbsp;|&nbsp; Brisbane &nbsp;|&nbsp; Cairns &nbsp;|&nbsp; Townsville</span></span>
     </a>
     <div class="socials">
@@ -878,10 +954,10 @@ img, svg, video { max-width: 100%; }
 
   // Images: each slot tries the local images/ folder first, then the partner site, then a labelled placeholder.
   var IMAGES = {
-    'waigani:1': { local: 'images/waigani-aerial-1.jpg', remote: WIX + 'b8a020_e1c95aa0e32b4be4aae7bf63cbd1aa6f~mv2.jpg', alt: 'Aerial view of the Waigani National Courts Complex, Port Moresby' },
-    'waigani:2': { local: 'images/waigani-aerial-2.jpg', remote: WIX + 'b8a020_a991cbc8bf9146549bbd6e29e60a9b90~mv2.jpg', alt: 'Waigani National Courts Complex from the air' },
-    'waigani:3': { local: 'images/waigani-aerial-3.jpg', remote: WIX + 'b8a020_4c5ba0ed906a43b79542c371cb97893b~mv2.jpg', alt: 'Waigani National Courts Complex and the Waigani precinct' },
-    'waigani:4': { local: 'images/waigani-aerial-4.jpg', remote: WIX + 'b8a020_a7434ca0b3a542249d3e75419ed2f980~mv2.jpg', alt: 'Courts and administration buildings at Waigani' },
+    'waigani:1': { local: 'images/waigani-building.jpg', alt: 'Waigani National Courts Complex, the courts building and its woven concrete screen' },
+    'waigani:2': { local: 'images/waigani-banco-court.jpg', alt: 'Banco Court elevation with the PNG flag, Waigani National Law Courts' },
+    'waigani:3': { local: 'images/waigani-courtroom.jpg', alt: 'A courtroom at the Waigani National Courts Complex' },
+    'waigani:4': { local: 'images/waigani-screen.jpg', alt: 'Close-up of the woven concrete screen blocks on the courts facade' },
     'waigani:plan': { local: 'images/waigani-plan.jpg', remote: WIX + 'b8a020_633255f0575f447ca163777d75a87a7c~mv2.jpg', alt: 'Site plan of the Waigani National Courts Complex' },
     'hudson': { local: 'images/team-brett-hudson.jpg', remote: WIX + 'b8a020_6d3df2557d1d4e5688c263bbbcc9c877~mv2_d_2711_3761_s_4_2.jpeg', alt: 'Brett Hudson' },
     'grant': { local: 'images/team-cameron-grant.jpg', remote: WIX + 'b8a020_bc184a445ce44f598b9e82f77357cdbe~mv2_d_2722_3390_s_4_2.jpeg', alt: 'Cameron Grant' },
@@ -930,6 +1006,52 @@ img, svg, video { max-width: 100%; }
     { id: 'davara', name: 'Davara Badina', sector: 'Residential', images: ['davara-1'],
       facts: [['Location', 'TBC'], ['Date', 'TBC']], body: [], todo: 'Sector, location and description to supply' }
   ];
+  // Current projects and awards. Blank years and missing photos show as clear placeholders until details arrive.
+  var CURRENT = [
+    { year: '', kicker: 'Under construction', name: 'Current project to supply', text: 'Name, client, location, stage and a photo to supply.', img: 'current-1', line: 'Project 1' },
+    { year: '', kicker: 'In design', name: 'Current project to supply', text: 'Name, client, location, stage and a photo to supply.', img: 'current-2', line: 'Project 2' },
+    { year: '', kicker: 'Documentation', name: 'Current project to supply', text: 'Name, client, location, stage and a photo to supply.', img: 'current-3', line: 'Project 3' }
+  ];
+  var AWARDS = [
+    { year: '2026', kicker: 'PNGIA Dulux Design Excellence Awards', name: 'Overall DuluxGroup Design Excellence Award', text: 'The top award of the night, presented at the Hilton Port Moresby before more than 400 guests.', img: 'dulux-award-2026', line: 'Overall Design Excellence', go: 'news' },
+    { year: '2026', kicker: 'PNGIA Dulux Design Excellence Awards', name: 'Colour Award', text: 'One of 11 awards across design, heritage and colour.', img: 'award-colour-2026', line: 'Colour Award' },
+    { year: '2025', kicker: 'Milestone', name: 'Waigani National Courts Complex opens', text: 'Described at its opening as the largest single building project undertaken by the PNG Government.', img: 'waigani:1', line: 'Waigani opens', go: 'project-waigani' },
+    { year: '', kicker: 'Occasion to supply', name: 'Award to supply', text: 'Year, occasion and photo to supply.', img: 'award-4', line: 'Award' },
+    { year: '', kicker: 'Occasion to supply', name: 'Award to supply', text: 'Year, occasion and photo to supply.', img: 'award-5', line: 'Award' }
+  ];
+  function timeline(root, items, what) {
+    root.tabIndex = 0;
+    root.innerHTML = '<div class="tl-main"><div class="tl-frame"></div><div><div class="pa-caps" aria-live="polite"></div><div class="pa-ctrl">' +
+      '<button class="pa-btn" type="button" aria-label="Previous ' + what + '">&lt;</button><button class="pa-btn" type="button" aria-label="Next ' + what + '">&gt;</button>' +
+      '<span class="g-count"></span><div class="arch-bar" aria-hidden="true"><span></span></div></div></div></div><ol class="tl-line"></ol>';
+    var frame = root.querySelector('.tl-frame'), caps = root.querySelector('.pa-caps'), line = root.querySelector('.tl-line'), count = root.querySelector('.g-count'), btns = root.querySelectorAll('.pa-btn');
+    var slides = items.map(function (it, n) {
+      var sl = document.createElement('div'); sl.className = 'pa-slide';
+      sl.appendChild(tint(slot(it.img, it.name), n + 2)); frame.appendChild(sl);
+      var cap = document.createElement('div'); cap.className = 'pa-cap';
+      cap.setAttribute('role', 'group'); cap.setAttribute('aria-label', (n + 1) + ' of ' + items.length + ': ' + it.name);
+      cap.innerHTML = '<div class="pa-year">' + (it.year ? esc(it.year) : '<span class="todo">Year TBC</span>') + '</div>' +
+        '<p class="small-caps">' + esc(it.kicker) + '</p><h3>' + esc(it.name) + '</h3><p class="sum">' + esc(it.text) + '</p>' +
+        (it.go ? '<button class="link-more" type="button" data-go="' + it.go + '">Find out more</button>' : '');
+      caps.appendChild(cap);
+      var li = document.createElement('li'), b = document.createElement('button'); b.type = 'button';
+      b.innerHTML = '<b>' + (it.year ? esc(it.year) : 'TBC') + '</b><span>' + esc(it.line) + '</span>';
+      b.onclick = function () { show(n); }; li.appendChild(b); line.appendChild(li);
+      return [sl, cap, b];
+    });
+    var at = 0;
+    function show(n) {
+      slides[at].forEach(function (e) { e.classList.remove('on'); }); slides[at][2].setAttribute('aria-current', 'false');
+      at = (n + slides.length) % slides.length;
+      slides[at].forEach(function (e) { e.classList.add('on'); }); slides[at][2].setAttribute('aria-current', 'true');
+      count.textContent = (at + 1) + '/' + slides.length;
+      var b = slides[at][2]; line.scrollTo({ left: b.offsetLeft - (line.clientWidth - b.offsetWidth) / 2, behavior: 'smooth' });
+      restart();
+    }
+    var restart = autoplay(root, function (d) { show(at + d); }, root.querySelector('.arch-bar span'));
+    btns[0].onclick = function () { show(at - 1); }; btns[1].onclick = function () { show(at + 1); };
+    show(0);
+  }
   function renderTimeline() {
     var frame = document.getElementById('timeline'), caps = document.getElementById('arc-caps'), dots = document.getElementById('arc-dots'), count = document.getElementById('arc-count'), bar = document.getElementById('arc-bar');
     var list = PROJECTS.slice().sort(function (a, b) { return (b.year || '0').localeCompare(a.year || '0'); });
@@ -1022,13 +1144,27 @@ img, svg, video { max-width: 100%; }
 
   // Build static parts
   document.querySelectorAll('[data-img]').forEach(function (el) { el.replaceWith(slot(el.getAttribute('data-img'), el.getAttribute('data-label'))); });
-  gallery(document.querySelector('[data-gallery="waigani"]'), ['waigani:1', 'waigani:2', 'waigani:3', 'waigani:4'], 'Waigani National Courts Complex');
   gallery(document.querySelector('[data-gallery="profile"]'), ['waigani:3', 'waigani:1', 'waigani:4'], 'Waigani National Courts Complex');
   document.addEventListener('click', function (e) { var j = e.target.closest('[data-jump]'); if (j) document.getElementById(j.getAttribute('data-jump')).scrollIntoView({ behavior: 'smooth' }); });
   gallery(document.querySelector('[data-gallery="studio"]'), ['studio-1', 'studio-2', 'studio-3'], 'Port Moresby studio and team');
   fillGrid('home-grid', PROJECTS.slice(0, 3));
   fillGrid('port-grid', PROJECTS);
   renderTimeline();
+  timeline(document.getElementById('tl-current'), CURRENT, 'project');
+  timeline(document.getElementById('tl-awards'), AWARDS, 'award');
+  // Video hero: show the film once it plays; until then crossfade the photos every 10 seconds.
+  (function () {
+    var hero = document.getElementById('vhero'), v = document.getElementById('vh-video'), imgs = hero.querySelectorAll('.vh-slides img'), at = 0;
+    var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function fit() { document.documentElement.style.setProperty('--head-h', document.querySelector('.site-head').offsetHeight + 'px'); }
+    fit(); window.addEventListener('resize', fit);
+    v.addEventListener('playing', function () { hero.classList.add('playing'); });
+    if (still) { v.removeAttribute('autoplay'); v.pause(); hero.classList.add('still'); return; }
+    setInterval(function () {
+      if (hero.classList.contains('playing') || document.hidden) return;
+      imgs[at].classList.remove('on'); at = (at + 1) % imgs.length; imgs[at].classList.add('on');
+    }, 10000);
+  })();
   var tg = document.getElementById('team-grid');
   ['Managing Director', 'Principal Architect', 'Project Architect', 'Graduate Architect'].forEach(function (r, n) {
     var d = document.createElement('div'); d.className = 'person';
@@ -1131,7 +1267,7 @@ img, svg, video { max-width: 100%; }
     document.documentElement.classList.add('js-reveal');
     var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
     window.__reveal = function (root) {
-      (root || document).querySelectorAll('.sec-title, .feat, .card, .idea, .tile, .award, .award-photo, .row, .pa, .body-copy, .office, .social-card, .quote blockquote').forEach(function (el) {
+      (root || document).querySelectorAll('.sec-title, .feat, .card, .idea, .tile, .award, .award-photo, .row, .pa, .tl, .body-copy, .office, .social-card, .quote blockquote').forEach(function (el) {
         if (el.classList.contains('reveal')) return;
         var sib = el.parentElement ? [].indexOf.call(el.parentElement.children, el) : 0;
         el.style.setProperty('--d', Math.min(sib, 5) * 0.08 + 's');
