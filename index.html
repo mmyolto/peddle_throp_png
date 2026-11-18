@@ -523,6 +523,38 @@ img, svg, video { max-width: 100%; }
   .vhero.playing:not(.paused) .vh-shade { opacity: .9; }
 }
 @media (prefers-reduced-motion: reduce) { #vh-sound { animation: none; } }
+/* Scroll story: one building drawn, modelled and built as you scroll (after the reference film) */
+.story { position: relative; height: 420vh; background: #0f1a22; color: #fff; }
+.st-pin { position: sticky; top: var(--head-h, 84px); height: calc(100svh - var(--head-h, 84px)); min-height: 460px; overflow: hidden; }
+.st-stage { position: absolute; inset: 0; transform: scale(var(--z, 1.08)); transform-origin: 50% 55%; will-change: transform; }
+.st-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; opacity: 0; will-change: opacity, clip-path; }
+.st-img:first-child { opacity: 1; }
+.st-line { position: absolute; top: 0; bottom: 0; width: 2px; left: 0; background: #e7b46e; box-shadow: 0 0 18px 4px rgba(231,180,110,.55); opacity: 0; pointer-events: none; z-index: 1; }
+.st-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,14,20,.85) 0%, rgba(8,14,20,.5) 36%, rgba(8,14,20,0) 64%), linear-gradient(to right, rgba(8,14,20,.45), rgba(8,14,20,0) 50%), linear-gradient(to left, rgba(8,14,20,.4), rgba(8,14,20,0) 22%); pointer-events: none; z-index: 2; }
+.st-caps { position: absolute; left: 0; right: 0; bottom: clamp(48px, 9vh, 110px); z-index: 3; }
+.st-cap { position: absolute; left: var(--gutter); bottom: 0; max-width: 34rem; opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); pointer-events: none; }
+.st-cap.on { opacity: 1; transform: none; pointer-events: auto; }
+.st-cap .eyebrow { font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; color: #e7b46e; margin-bottom: 14px; }
+.st-cap h2 { color: #fff !important; font-size: clamp(32px, 5vw, 68px); line-height: 1.02; letter-spacing: 0.06em; text-transform: uppercase; text-shadow: 0 2px 30px rgba(0,0,0,.35); margin: 0; }
+.st-cap h2 em { display: block; text-transform: none; font-style: italic; letter-spacing: 0.01em; font-weight: 400; }
+.st-cap h2::after, .st-cap h2::before { display: none !important; }
+.st-cap p { color: rgba(255,255,255,.88); font-size: 16px; line-height: 1.6; margin-top: 16px; max-width: 30rem; }
+.st-cap .btn { margin-top: 22px; background: transparent; color: #fff; border-color: rgba(255,255,255,.8); }
+.st-cap .btn:hover { background: var(--ochre); border-color: var(--ochre); }
+.st-rail { position: absolute; right: var(--gutter); top: 50%; transform: translateY(-50%); z-index: 3; list-style: none; margin: 0; padding: 0 0 0 18px; display: grid; gap: 22px; }
+.st-rail::before, .st-rail::after { content: ""; position: absolute; left: 0; top: 4px; bottom: 4px; width: 2px; background: rgba(255,255,255,.28); }
+.st-rail::after { background: #e7b46e; bottom: auto; height: calc(var(--p, 0) * (100% - 8px)); }
+.st-rail li { font-size: 11px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,.55); transition: color .4s; text-shadow: 0 1px 8px rgba(0,0,0,.4); }
+.st-rail li.on { color: #fff; }
+.st-hint { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 3; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(255,255,255,.75); transition: opacity .4s; }
+.st-hint::after { content: ""; display: block; width: 1px; height: 28px; margin: 8px auto 0; background: linear-gradient(#fff, transparent); animation: st-drip 1.8s ease-in-out infinite; }
+@keyframes st-drip { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+.story.past-start .st-hint { opacity: 0; }
+@media (max-width: 700px) { .story { height: 340vh; } .st-shade { background: linear-gradient(to top, rgba(8,14,20,.85) 0%, rgba(8,14,20,.5) 36%, rgba(8,14,20,0) 64%), linear-gradient(to bottom, rgba(8,14,20,.6), rgba(8,14,20,0) 26%); } .st-rail { top: 18px; transform: none; gap: 10px; } .st-rail li { font-size: 9.5px; } .st-cap p { font-size: 14.5px; } }
+/* Preview-only switch between the two animation options */
+.opt-switch { position: fixed; left: 14px; bottom: 14px; z-index: 90; display: flex; align-items: center; gap: 6px; padding: 6px 8px 6px 14px; background: rgba(29,42,51,.92); color: #fff; border-radius: 999px; font: 12px/1 var(--font); letter-spacing: .08em; box-shadow: 0 6px 24px rgba(0,0,0,.25); }
+.opt-switch button { font: inherit; color: #fff; background: transparent; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
+.opt-switch button[aria-pressed="true"] { background: #b8772f; border-color: #b8772f; }
 </style>
 
 <!-- Line icons for the three PNG ideas -->
@@ -579,8 +611,30 @@ img, svg, video { max-width: 100%; }
       <button type="button" id="vh-sound" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="x" d="M16 9l5 6M21 9l-5 6"/><path class="w" d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12"/></svg><span>Sound on</span></button>
       <button type="button" id="vh-play" aria-label="Pause video"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="pz" d="M7 5h3v14H7zM14 5h3v14h-3z"/><path class="pl" d="M8 5l11 7-11 7z"/></svg></button>
     </div>
-    <button class="vh-scroll" type="button" data-jump="home-next" aria-label="Scroll to featured work"><span></span></button>
+    <button class="vh-scroll" type="button" data-jump="story" aria-label="Scroll down"><span></span></button>
   </div>
+
+  <!-- Scroll story: the Waigani courts drawn, modelled and built as you scroll. Stage images come from images/waigani-building.jpg. -->
+  <section class="story" id="story" data-mode="fade" aria-label="From first line to finished building">
+    <div class="st-pin">
+      <div class="st-stage">
+        <img class="st-img" src="images/story-1-blueprint.jpg" alt="Blueprint linework of the Waigani National Courts building">
+        <img class="st-img" src="images/story-2-drawing.jpg" alt="" loading="lazy">
+        <img class="st-img" src="images/story-3-model.jpg" alt="" loading="lazy">
+        <img class="st-img" src="images/story-4-built.jpg" alt="The completed Waigani National Courts building in Port Moresby" loading="lazy">
+      </div>
+      <div class="st-line" aria-hidden="true"></div>
+      <div class="st-shade" aria-hidden="true"></div>
+      <div class="st-caps">
+        <div class="st-cap on"><p class="eyebrow">01 · Concept</p><h2>From first line<em>to finished place.</em></h2><p>Every building we deliver begins on paper. Scroll to watch one take shape.</p></div>
+        <div class="st-cap"><p class="eyebrow">02 · Design</p><h2>Drawn<em>to the brief.</em></h2><p>Sketches tested against the site, the climate and the people who will use it.</p></div>
+        <div class="st-cap"><p class="eyebrow">03 · Documentation</p><h2>Shaped<em>in every detail.</em></h2><p>Form, light, structure and materials resolved before construction begins.</p></div>
+        <div class="st-cap"><p class="eyebrow">04 · Delivered</p><h2>Built<em>for Papua New Guinea.</em></h2><p>Waigani National Courts Complex, Port Moresby.</p><button class="btn" type="button" data-go="project-waigani">See the project</button></div>
+      </div>
+      <ol class="st-rail" aria-hidden="true"><li class="on">Concept</li><li>Design</li><li>Detail</li><li>Delivered</li></ol>
+      <div class="st-hint" aria-hidden="true">Scroll</div>
+    </div>
+  </section>
 
   <section class="sec" id="home-next">
     <div class="wrap">
@@ -1323,6 +1377,52 @@ img, svg, video { max-width: 100%; }
       });
     };
     window.__reveal();
+  })();
+
+  // Scroll story: pinned stage; scroll position blends blueprint > drawing > model > built.
+  // data-mode="fade" cross-fades the stages; data-mode="wipe" sweeps each one in behind a drafting line.
+  (function () {
+    var sec = document.getElementById('story'); if (!sec) return;
+    var imgs = sec.querySelectorAll('.st-img'), caps = sec.querySelectorAll('.st-cap'), rail = sec.querySelector('.st-rail'),
+        dots = rail.querySelectorAll('li'), line = sec.querySelector('.st-line'), stage = sec.querySelector('.st-stage'),
+        n = imgs.length, still = matchMedia('(prefers-reduced-motion: reduce)').matches, ticking = false, last = -1;
+    function ease(x) { x = Math.max(0, Math.min(1, x)); return x * x * (3 - 2 * x); }
+    function draw() {
+      ticking = false;
+      var r = sec.getBoundingClientRect(), pin = sec.firstElementChild.offsetHeight;
+      if (!r.height) return;
+      var p = Math.max(0, Math.min(1, -r.top / (r.height - pin))), t = p * (n - 1), wipe = sec.getAttribute('data-mode') === 'wipe', edge = -1;
+      for (var i = 1; i < n; i++) {
+        var k = ease((t - (i - 1) - 0.3) / 0.55);
+        if (wipe) {
+          imgs[i].style.opacity = k > 0 ? 1 : 0;
+          imgs[i].style.clipPath = 'inset(0 ' + ((1 - k) * 100).toFixed(2) + '% 0 0)';
+          if (k > 0 && k < 1) edge = k;
+        } else { imgs[i].style.opacity = k.toFixed(3); imgs[i].style.clipPath = ''; }
+      }
+      line.style.opacity = edge >= 0 ? 1 : 0;
+      if (edge >= 0) line.style.left = (edge * 100) + '%';
+      if (!still) stage.style.setProperty('--z', (1.08 - 0.08 * p).toFixed(4));
+      rail.style.setProperty('--p', p.toFixed(4));
+      var on = Math.min(n - 1, Math.round(t));
+      if (on !== last) { last = on; caps.forEach(function (c, j) { c.classList.toggle('on', j === on); }); dots.forEach(function (d, j) { d.classList.toggle('on', j <= on); }); }
+      sec.classList.toggle('past-start', p > 0.02);
+    }
+    function ask() { if (!ticking) { ticking = true; requestAnimationFrame(draw); } }
+    window.addEventListener('scroll', ask, { passive: true });
+    window.addEventListener('resize', ask);
+    window.addEventListener('hashchange', function () { setTimeout(ask, 50); });
+    // Preload the later stages once the page has settled
+    window.addEventListener('load', function () { imgs.forEach(function (im) { im.loading = 'eager'; }); });
+    // Preview-only option switch
+    document.querySelectorAll('.opt-switch [data-opt]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        sec.setAttribute('data-mode', b.getAttribute('data-opt'));
+        document.querySelectorAll('.opt-switch [data-opt]').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        ask();
+      });
+    });
+    draw();
   })();
 </script>
 </body>
