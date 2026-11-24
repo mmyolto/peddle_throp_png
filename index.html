@@ -591,6 +591,24 @@ main .page > section.sec.quote { background: var(--cyan) !important; color: var(
 @media (max-width: 600px) { .aff-list { grid-template-columns: 1fr; border-left: 0; } .aff { border-right: 0; border-bottom: 1px solid var(--rule); } .aff:last-child { border-bottom: 0; } }
 /* Practice tiles: four after Policy and Sustainability moved to the footer */
 @media (min-width: 701px) { .tiles { grid-template-columns: repeat(4, 1fr); } }
+/* Projects completed frame (replaces the Parliament sketch). Three looks, set by data-frame on .pa:
+   diagonal = photo with a slanted edge and offset cyan panel, like the banner; arch = arched photo, fine outline and the logo's cyan sun;
+   gallery = framed print on pale cyan with a fine inner rule. */
+.pa-sketch { aspect-ratio: 5 / 6 !important; }
+.pa-sketch::before, .pa-sketch::after { content: ""; position: absolute; pointer-events: none; }
+.pa-panel { inset: 0; left: 0 !important; top: 0 !important; width: auto !important; height: auto !important; clip-path: none !important; background: #0d2a36; transition: clip-path .6s, border-radius .6s; }
+.pa[data-frame="diagonal"] .pa-sketch::before { inset: 9% 0 0 9%; background: var(--cyan); clip-path: polygon(24% 0, 100% 0, 100% 100%, 0 100%); }
+.pa[data-frame="diagonal"] .pa-panel { inset: 0 9% 9% 0 !important; clip-path: polygon(24% 0, 100% 0, 100% 100%, 0 100%) !important; }
+.pa[data-frame="arch"] .pa-sketch::before { width: 34%; aspect-ratio: 1; right: 2%; top: 4%; border-radius: 50%; background: var(--cyan); }
+.pa[data-frame="arch"] .pa-sketch::after { inset: 8% 4% 0 16%; border: 1px solid var(--ink); border-bottom: 0; border-radius: 999px 999px 0 0; }
+.pa[data-frame="arch"] .pa-panel { inset: 12% 14% 4% 8% !important; border-radius: 999px 999px 0 0; overflow: hidden; }
+.pa[data-frame="gallery"] .pa-sketch::before { inset: 0; background: #fff; box-shadow: 0 30px 50px -36px rgba(10,127,156,.5); }
+.pa[data-frame="gallery"] .pa-sketch::after { inset: 3.5%; border: 1px solid var(--gold); opacity: .6; }
+.pa[data-frame="gallery"] .pa-panel { inset: 8% !important; box-shadow: 0 24px 40px -24px rgba(10,127,156,.55); }
+.pa-panel { z-index: 1; }
+.opt-switch { position: fixed; left: 14px; bottom: 14px; z-index: 90; display: flex; align-items: center; gap: 6px; padding: 6px 8px 6px 14px; background: rgba(16,25,30,.92); color: #fff; border-radius: 999px; font: 12px/1 var(--font); letter-spacing: .06em; box-shadow: 0 6px 24px rgba(0,0,0,.25); }
+.opt-switch button { font: inherit; color: #fff; background: transparent; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
+.opt-switch button[aria-pressed="true"] { background: var(--cyan); border-color: var(--cyan); color: var(--ink); }
 </style>
 
 <!-- Line icons for the three PNG ideas -->
@@ -811,38 +829,8 @@ main .page > section.sec.quote { background: var(--cyan) !important; color: var(
       <div class="sec-title"><h2>Projects completed</h2><p class="small-caps" style="margin-top:14px">Our completed work, one project at a time</p></div>
     </div>
     <div class="wrap">
-      <div class="pa" id="arch" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Completed projects">
+      <div class="pa" id="arch" data-frame="diagonal" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Completed projects">
         <div class="pa-sketch">
-          <svg viewBox="0 0 600 640" aria-hidden="true">
-            <defs>
-              <clipPath id="pa-panel-clip" clipPathUnits="objectBoundingBox"><path d="M0 1 L0.02 0.55 Q0.12 0.18 0.5 0 Q0.88 0.18 0.98 0.55 L1 1 Z"/></clipPath>
-              <pattern id="pa-zig" width="12" height="10" patternUnits="userSpaceOnUse"><rect width="12" height="10" fill="#4dedf9"/><path d="M0 8 L3 2 L6 8 L9 2 L12 8" fill="none" stroke="#0a7f9c" stroke-width=".8"/></pattern>
-            </defs>
-            <!-- water -->
-            <path class="water" d="M10 604 H120 M150 604 H240 M40 616 H190 M220 616 H330 M20 628 H110 M140 628 H260"/>
-            <!-- roof: long sail edge on the left, steep edge on the right -->
-            <path class="soffit" d="M470 10 L468 34 L430 83 Q530 262 535 560 L560 524 Z"/>
-            <path class="roof" d="M470 10 L40 560 L56 568 L468 34 Z"/>
-            <path class="ln" d="M470 10 L560 524"/>
-            <path class="ln fine" d="M470 62 L546 524"/>
-            <!-- facade wall under the roof -->
-            <path class="wall ln" d="M120 560 V483 L430 83 Q530 262 535 560 Z"/>
-            <!-- timber fins on the left -->
-            <path class="fin" d="M158 446 h7 V560 h-7 Z M183 413 h7 V560 h-7 Z M208 381 h7 V560 h-7 Z M233 349 h7 V560 h-7 Z"/>
-            <path class="ln fine" d="M172 440 V560 M197 408 V560 M222 375 V560 M247 343 V560"/>
-            <!-- mosaic panel frame -->
-            <path class="ln" d="M293 527 L296 352 Q317 208 400 140 Q483 208 504 352 L507 527"/>
-            <rect class="lattice" x="293" y="527" width="214" height="33"/>
-            <path class="ln" d="M318 560 V548 A14 14 0 0 1 346 548 V560" fill="#fff"/>
-            <!-- palms in front -->
-            <path class="palm" d="M70 586 Q66 520 78 452 M78 452 Q50 440 28 456 M78 452 Q60 424 36 420 M78 452 Q88 422 112 418 M78 452 Q104 446 120 466 M78 452 Q80 432 70 410"/>
-            <path class="palm" d="M118 588 Q124 540 116 494 M116 494 Q96 486 82 500 M116 494 Q108 472 92 466 M116 494 Q128 472 148 474 M116 494 Q136 494 146 512"/>
-            <!-- plinth and steps -->
-            <path class="ln" d="M20 560 H600"/>
-            <path class="ln fine" d="M520 566 H600 M512 575 H600 M504 584 H600 M496 593 H600 M488 602 H600 M480 611 H600 M472 620 H600 M464 629 H600"/>
-            <path class="ln" d="M528 560 L456 638"/>
-            <path class="ln fine" d="M30 566 H500 M30 574 H480"/>
-          </svg>
           <div class="pa-panel" id="timeline"></div>
         </div>
         <div>
