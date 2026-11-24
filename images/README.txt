@@ -14,5 +14,5 @@ kumul-1.jpg                 Kumul Holdings workplace
 intl-1.jpg                  ADB / World Bank / Puma offices
 airways-1.jpg               Airways Function Centre
 davara-1.jpg                Davara Badina
-studio-1.jpg .. studio-3.jpg  Port Moresby studio and team photos
+office-1.jpg .. office-3.jpg  Port Moresby office and team photos
 team-1.jpg .. team-4.jpg    Portraits: Managing Director, Principal, Project Architect, Graduate
