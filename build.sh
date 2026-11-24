@@ -7,7 +7,7 @@ FB='<iframe class="fb-frame" title="Peddle Thorp Architects PNG on Facebook" loa
   printf '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n<meta name="description" content="Peddle Thorp Architects PNG: architecture, interiors and planning from Port Moresby for over thirty years.">\n'
   awk '/<header class="site-head">/{exit} {print}' src/body.html
   printf '</head>\n<body>\n'
-  awk 'f{print} /<header class="site-head">/{f=1; print}' src/body.html | sed '/<!--OPT-START-->/,/<!--OPT-END-->/d' | sed "s|<!--FB-EMBED-->|$FB|"
+  awk 'f{print} /<header class="site-head">/{f=1; print}' src/body.html | sed "s|<!--FB-EMBED-->|$FB|"
   printf '</body>\n</html>\n'
 } > index.html
 python3 tools-inline.py
