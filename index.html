@@ -591,24 +591,13 @@ main .page > section.sec.quote { background: var(--cyan) !important; color: var(
 @media (max-width: 600px) { .aff-list { grid-template-columns: 1fr; border-left: 0; } .aff { border-right: 0; border-bottom: 1px solid var(--rule); } .aff:last-child { border-bottom: 0; } }
 /* Practice tiles: four after Policy and Sustainability moved to the footer */
 @media (min-width: 701px) { .tiles { grid-template-columns: repeat(4, 1fr); } }
-/* Projects completed frame (replaces the Parliament sketch). Three looks, set by data-frame on .pa:
-   diagonal = photo with a slanted edge and offset cyan panel, like the banner; arch = arched photo, fine outline and the logo's cyan sun;
-   gallery = framed print on pale cyan with a fine inner rule. */
+/* Projects completed frame (replaces the Parliament sketch): photo with a slanted edge over an offset cyan panel, like the banner. */
 .pa-sketch { aspect-ratio: 5 / 6 !important; }
 .pa-sketch::before, .pa-sketch::after { content: ""; position: absolute; pointer-events: none; }
 .pa-panel { inset: 0; left: 0 !important; top: 0 !important; width: auto !important; height: auto !important; clip-path: none !important; background: #0d2a36; transition: clip-path .6s, border-radius .6s; }
 .pa[data-frame="diagonal"] .pa-sketch::before { inset: 9% 0 0 9%; background: var(--cyan); clip-path: polygon(24% 0, 100% 0, 100% 100%, 0 100%); }
 .pa[data-frame="diagonal"] .pa-panel { inset: 0 9% 9% 0 !important; clip-path: polygon(24% 0, 100% 0, 100% 100%, 0 100%) !important; }
-.pa[data-frame="arch"] .pa-sketch::before { width: 34%; aspect-ratio: 1; right: 2%; top: 4%; border-radius: 50%; background: var(--cyan); }
-.pa[data-frame="arch"] .pa-sketch::after { inset: 8% 4% 0 16%; border: 1px solid var(--ink); border-bottom: 0; border-radius: 999px 999px 0 0; }
-.pa[data-frame="arch"] .pa-panel { inset: 12% 14% 4% 8% !important; border-radius: 999px 999px 0 0; overflow: hidden; }
-.pa[data-frame="gallery"] .pa-sketch::before { inset: 0; background: #fff; box-shadow: 0 30px 50px -36px rgba(10,127,156,.5); }
-.pa[data-frame="gallery"] .pa-sketch::after { inset: 3.5%; border: 1px solid var(--gold); opacity: .6; }
-.pa[data-frame="gallery"] .pa-panel { inset: 8% !important; box-shadow: 0 24px 40px -24px rgba(10,127,156,.55); }
 .pa-panel { z-index: 1; }
-.opt-switch { position: fixed; left: 14px; bottom: 14px; z-index: 90; display: flex; align-items: center; gap: 6px; padding: 6px 8px 6px 14px; background: rgba(16,25,30,.92); color: #fff; border-radius: 999px; font: 12px/1 var(--font); letter-spacing: .06em; box-shadow: 0 6px 24px rgba(0,0,0,.25); }
-.opt-switch button { font: inherit; color: #fff; background: transparent; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
-.opt-switch button[aria-pressed="true"] { background: var(--cyan); border-color: var(--cyan); color: var(--ink); }
 </style>
 
 <!-- Line icons for the three PNG ideas -->
