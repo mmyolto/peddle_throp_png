@@ -583,6 +583,8 @@ main .page > section.sec.quote { background: var(--cyan) !important; color: var(
 .aff-link a { color: var(--gold); }
 .site-foot .foot-small a { color: var(--ink); }
 @media (max-width: 600px) { .aff-list { grid-template-columns: 1fr; border-left: 0; } .aff { border-right: 0; border-bottom: 1px solid var(--rule); } .aff:last-child { border-bottom: 0; } }
+/* Practice tiles: four after Policy and Sustainability moved to the footer */
+@media (min-width: 701px) { .tiles { grid-template-columns: repeat(4, 1fr); } }
 </style>
 
 <!-- Line icons for the three PNG ideas -->
@@ -602,8 +604,7 @@ main .page > section.sec.quote { background: var(--cyan) !important; color: var(
     </a>
     <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="nav" id="nav" aria-label="Main">
-      <div><a class="top" href="#profile">Profile</a>
-        <div class="drop"><a href="#profile">About us</a><a href="#policies">Policies</a><a href="#sustainability">Sustainability</a></div></div>
+      <div><a class="top" href="#profile">Profile</a></div>
       <div><a class="top" href="#portfolio">Portfolio</a>
         <div class="drop" id="nav-sectors"></div></div>
       <div><a class="top" href="#office">Our Office</a>
@@ -702,8 +703,6 @@ main .page > section.sec.quote { background: var(--cyan) !important; color: var(
       <div class="sec-title"><h2>Practice</h2></div>
       <div class="tiles">
         <a class="tile" href="#profile"><b>About</b><span>Thirty years in Port Moresby</span></a>
-        <a class="tile" href="#sustainability"><b>Sustainability</b><span>Designing for the tropics</span></a>
-        <a class="tile" href="#policies"><b>Policies</b><span>Quality, safety, environment</span></a>
         <a class="tile" href="#office"><b>Our Office</b><span>Five Peddle Thorp offices</span></a>
         <a class="tile" href="#team"><b>Careers</b><span>Graduates and architects</span></a>
         <a class="tile" href="#contact"><b>Contact</b><span>Start a project with us</span></a>
@@ -1376,7 +1375,7 @@ main .page > section.sec.quote { background: var(--cyan) !important; color: var(
 
   // Router: bare hash tokens only (#home, #portfolio, #project-waigani ...)
   var pages = document.querySelectorAll('[data-page]'), tops = document.querySelectorAll('.nav a.top');
-  var SECTION = { profile: 'profile', policies: 'profile', sustainability: 'profile', portfolio: 'portfolio', project: 'portfolio', office: 'office', team: 'office', awards: 'office', careers: 'office', news: 'news', contact: 'contact' };
+  var SECTION = { profile: 'profile', portfolio: 'portfolio', project: 'portfolio', office: 'office', team: 'office', awards: 'office', careers: 'office', news: 'news', contact: 'contact' };
   var NAMES = { profile: 'Profile', policies: 'Policies', sustainability: 'Sustainability', portfolio: 'Portfolio', office: 'Our Office', careers: 'Careers', team: 'Meet our team', awards: 'Awards', news: 'News', contact: 'Contact us' };
   function route() {
     var id = (location.hash || '#home').slice(1), page = id, title = '';
